@@ -13,3 +13,12 @@
     color: #FFFF;
     background: red;
 }
+.home-btn{
+    border-radius: 3px ;
+    padding: 20px 40px;
+    background-color: blue;
+    color: #FFFF;
+}
+.home-input{
+    width: 450px;
+}

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import axios from 'axios';
-import { Button, Table } from 'antd';
+import { Button, Form, Input, Modal, Table } from 'antd';
 const Home = () => {
     const [cities,setCities] = useState([]);
+    const [open,setOpen] = useState(false)
     const getCities = () =>{
         axios.get('https://autoapi.dezinfeksiyatashkent.uz/api/cities')
         .then(res=>setCities(res.data.data))
@@ -12,6 +13,12 @@ const Home = () => {
     useEffect(()=>{
         getCities()
     },[])
+    const showModal = () =>{
+        setOpen(true)
+    }
+    const closeModal = () =>{
+        setOpen(false)
+    }
     const columns = [
         {
             title:"Name",
@@ -43,7 +50,21 @@ const Home = () => {
   return (
     <div className='home'>
       <div className='container home-container'>
+        <Button className='home-btn' onClick={showModal}>Qushish</Button>
         <Table columns={columns} dataSource={data}/>
+        <Modal open={open} footer={null}>
+            <Form>
+                <Form.Item>
+                    <Input className='home-input'/>
+                </Form.Item>
+                <Form.Item>
+                    <Input className='home-input'/>
+                </Form.Item>
+                <Form.Item>
+                    <Input className='home-input'/>
+                </Form.Item>
+            </Form>
+        </Modal>
       </div>
     </div>
   )
