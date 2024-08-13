@@ -1,0 +1,32 @@
+.login-container{
+    background-size: cover;
+    justify-content: center;
+    width: 500px ;
+    height: 250px;
+    border-radius: 10px;
+    border: 1px solid rgb(76, 231, 10);
+    margin-top: 300px;
+    position: relative;box-shadow: 1px 1px 1000px 1px;
+}
+.login-container:hover{
+    transform: scale(1.099);
+    transition: 1s;
+}
+.login-btn{
+    width: 305px;
+    background-color: blue;
+    color: #FFFF;
+    margin-left: -33px;
+    margin-top: 5px;
+}
+.login-item{
+    margin-top: 30px;
+    margin-left: -50px;
+}
+.login-img{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    bottom: 39px;
+    left: 50px;
+}
