@@ -26,6 +26,15 @@ const Home = () => {
             dataIndex:"images",
         },
     ]
+    const data = cities.map((city,index)=>(
+        {
+            number:index+1,
+            key:index,
+            name:city.name,
+            text:city.text,
+            images:city.images
+        }
+    ))
   return (
     <div className='home'>
       <div className='container home-container'>
