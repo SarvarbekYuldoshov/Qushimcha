@@ -19,6 +19,15 @@
     background-color: blue;
     color: #FFFF;
 }
-.home-input{
-    width: 450px;
+.home-input-a{
+    width: 350px;
+    margin-left: 5px;
+}
+.home-input-b{
+    width: 350px;
+    margin-left: 10px;
+}
+.home-input-c{
+    margin-left: 24px;
+    width: 350px;
 }

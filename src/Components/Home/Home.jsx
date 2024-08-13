@@ -5,6 +5,7 @@ import { Button, Form, Input, Modal, Table } from 'antd';
 const Home = () => {
     const [cities,setCities] = useState([]);
     const [open,setOpen] = useState(false)
+
     const getCities = () =>{
         axios.get('https://autoapi.dezinfeksiyatashkent.uz/api/cities')
         .then(res=>setCities(res.data.data))
@@ -52,16 +53,25 @@ const Home = () => {
       <div className='container home-container'>
         <Button className='home-btn' onClick={showModal}>Qushish</Button>
         <Table columns={columns} dataSource={data}/>
-        <Modal open={open} footer={null}>
+        <Modal open={open} onCancel={closeModal}>
             <Form>
-                <Form.Item>
-                    <Input className='home-input'/>
+                <Form.Item
+                 label="Username"
+                 name="username"
+                >
+                    <Input placeholder='Username' className='home-input-a'/>
                 </Form.Item>
-                <Form.Item>
-                    <Input className='home-input'/>
+                <Form.Item
+                label="Password"
+                name="password"
+                >
+                    <Input placeholder='Password' className='home-input-b'/>
                 </Form.Item>
-                <Form.Item>
-                    <Input className='home-input'/>
+                <Form.Item 
+                 label="Images"
+                 name="images"
+                >
+                    <Input type='file' placeholder="Images" className='home-input-c'/>
                 </Form.Item>
             </Form>
         </Modal>
