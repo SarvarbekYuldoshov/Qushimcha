@@ -10,7 +10,7 @@ const Home = () => {
     }
     useEffect(()=>{
         getCities()
-    })
+    },[])
   return (
     <div>
       salom
