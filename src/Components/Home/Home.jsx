@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import axios from 'axios';
-import { Table } from 'antd';
+import { Button, Table } from 'antd';
 const Home = () => {
     const [cities,setCities] = useState([]);
     const getCities = () =>{
@@ -25,6 +25,10 @@ const Home = () => {
             title:"Images",
             dataIndex:"images",
         },
+        {
+            title:"Action",
+            dataIndex:"action"
+        }
     ]
     const data = cities.map((city,index)=>(
         {
@@ -32,7 +36,8 @@ const Home = () => {
             key:index,
             name:city.name,
             text:city.text,
-            images:city.images
+            images:(<img width={150} src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${city.image_src}`}/>),
+            action:(<><Button className= "home-btn-a">Edit</Button><Button className= "home-btn-b">Delete</Button></>)
         }
     ))
   return (
