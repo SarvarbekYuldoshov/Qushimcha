@@ -48,13 +48,30 @@ const Home = () => {
             action:(<><Button className= "home-btn-a">Edit</Button><Button className= "home-btn-b">Delete</Button></>)
         }
     ))
+
+    const handleSubmit = (values) => {
+       const formData = new FormData();
+       formData.append('name', values.name);
+       formData.append('text', values.text);
+       formData.append('image', values.images[0]);
+    axios({
+        url:'https://autoapi.dezinfeksiyatashkent.uz/api/cities',
+        method:'POST',
+        headers:{
+            Authorization:  `Bearer ${localStorage.getItem('token')}`
+        },
+        data:formData,
+    })
+}
   return (
     <div className='home'>
       <div className='container home-container'>
         <Button className='home-btn' onClick={showModal}>Qushish</Button>
         <Table columns={columns} dataSource={data}/>
         <Modal open={open} onCancel={closeModal}>
-            <Form>
+            <Form
+            onFinish={handleSubmit}
+            >
                 <Form.Item
                  label="Username"
                  name="username"
@@ -74,6 +91,7 @@ const Home = () => {
                     <Input type='file' placeholder="Images" className='home-input-c'/>
                 </Form.Item>
             </Form>
+            <Button className='home-btn-d' htmlType='submit'>Submit</Button>
         </Modal>
       </div>
     </div>
