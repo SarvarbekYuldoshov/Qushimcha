@@ -38,16 +38,25 @@ const Home = () => {
             dataIndex:"action"
         }
     ]
-    const data = cities.map((city,index)=>(
-        {
-            number:index+1,
-            key:index,
-            name:city.name,
-            text:city.text,
-            images:(<img width={150} src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${city.image_src}`}/>),
-            action:(<><Button className= "home-btn-a">Edit</Button><Button className= "home-btn-b">Delete</Button></>)
-        }
-    ))
+   const data = cities.map((city, index) => ({
+        number: index + 1,
+        key: index,
+        name: city.name,
+        text: city.text,
+        images: (
+            <img 
+                width={150}
+                src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${city.image_src}`} 
+                alt={city.name} 
+            />
+        ),
+        action: (
+            <>
+                <Button type='primary' onClick={() => showModal(city)}>Edit</Button> 
+                <Button type='primary' danger onClick={() => deleteCities(city.id)}>Delete</Button>
+            </>
+        )
+    }));
 
     const handleSubmit = (values) => {
        const formData = new FormData();
