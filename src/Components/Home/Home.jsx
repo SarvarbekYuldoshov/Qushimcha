@@ -60,16 +60,16 @@ const Home = () => {
         <div className='container home-container'>
             <Button className='home-btn' onClick={showModal}>Shahar Qushish</Button>
             <Table columns={columns} dataSource={data}/>
-            <Modal open={open} footer={null} >
+            <Modal open={open} footer={null} onCancel={closModal} >
                 <Form>
                     <Form.Item label="Name">
-                        <Input />
+                        <Input placeholder='Name' />
                     </Form.Item>
-                    <Form.Item label="Name">
-                        <Input />
+                    <Form.Item label="Text">
+                        <Input placeholder='Text' />
                     </Form.Item>
                     <Form.Item label="Images">
-                        <Input/>
+                        <Input placeholder='Images' type='file'/>
                     </Form.Item>
                     <Form.Item label="Qushish">
                         <Button>Sumbit</Button>
