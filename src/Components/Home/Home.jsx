@@ -14,16 +14,16 @@ const Home = () => {
     },[])
     const columns = [
         {
-           title:"Number",
-           dataIndex:"number",
+            title:"Number",
+            dataIndex:"number",
         },
         {
             title:"Name",
             dataIndex:"name",
         },
         {
-            title:"Text",
-            dataIndex:"text",
+             title:"Text",
+             dataIndex:"text",
         },
         {
             title:"Images",
@@ -36,7 +36,7 @@ const Home = () => {
             number:index+1,
             name:city.name,
             text:city.text,
-            images:(<img src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images${city.image_src}`}/>)
+            images:<img width={150} src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${city.image_src}`}/>
         }
     ))
   return (
