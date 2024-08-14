@@ -45,7 +45,7 @@ const Home = () => {
             <img 
             width={150} 
             src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${city.image_src}`}/>,
-            action:<><Button className='home-btn-a'>Edit</Button><Button className='home-btn-b'>Delete</Button></>
+            action:(<><Button className='home-btn-a'>Edit</Button><Button className='home-btn-b'>Delete</Button></>)
         }
     ))
   return (
