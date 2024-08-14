@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import axios from 'axios'
-import { Button, Table } from 'antd'
+import { Button, Form, Input, Modal, Table } from 'antd'
 const Home = () => {
     const [cities,setCities] = useState([])
     const [open,setOpen] = useState([])
@@ -53,6 +53,13 @@ const Home = () => {
         <div className='container home-container'>
             <Button className='home-btn'>Shahar Qushish</Button>
             <Table columns={columns} dataSource={data}/>
+            <Modal open={open}>
+                <Form>
+                    <Form.Item label="Name">
+                        <Input />
+                    </Form.Item>
+                </Form>
+            </Modal>
         </div>
     </div>
   )
