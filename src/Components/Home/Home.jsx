@@ -40,8 +40,10 @@ const Home = () => {
         }
     ))
   return (
-    <div>
-      <Table columns={columns} dataSource={data}/>
+    <div className='home'>
+        <div className='container home-container'>
+            <Table columns={columns} dataSource={data}/>
+        </div>
     </div>
   )
 }
