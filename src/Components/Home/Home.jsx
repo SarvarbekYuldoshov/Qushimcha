@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Button, Table } from 'antd'
 const Home = () => {
     const [cities,setCities] = useState([])
+    const [open,setOpen] = useState([])
     const getCities = () =>{
         axios.get('https://autoapi.dezinfeksiyatashkent.uz/api/cities')
         .then(res=>setCities(res.data.data))
