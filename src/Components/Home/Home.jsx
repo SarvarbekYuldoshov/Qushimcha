@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import axios from 'axios';
-import { Button, Form, Input, Modal, Table } from 'antd';
+import { Button, Form, Input, Modal, Table, message } from 'antd';
 const Home = () => {
     const [cities,setCities] = useState([]);
     const [open,setOpen] = useState(false)
-
+    const [image,setImage] = useState(null)
     const getCities = () =>{
         axios.get('https://autoapi.dezinfeksiyatashkent.uz/api/cities')
         .then(res=>setCities(res.data.data))
@@ -61,7 +61,13 @@ const Home = () => {
             Authorization:  `Bearer ${localStorage.getItem('token')}`
         },
         data:formData,
-    })
+    }).then(res=>{
+        if(res.data.succes){
+           message.success("Qushildi")
+           setOpen(false)
+           getCities()
+        }
+    }).catch(err=>console.log(err))
 }
   return (
     <div className='home'>
@@ -88,7 +94,7 @@ const Home = () => {
                  label="Images"
                  name="images"
                 >
-                    <Input type='file' placeholder="Images" className='home-input-c'/>
+                    <Input onChange={(e)=>setImage(e.target.value)} type='file' placeholder="Images" className='home-input-c'/>
                 </Form.Item>
             </Form>
             <Button className='home-btn-d' htmlType='submit'>Submit</Button>
