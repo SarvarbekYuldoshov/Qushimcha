@@ -55,6 +55,9 @@ const Home = () => {
             action:(<><Button className='home-btn-a'>Edit</Button><Button className='home-btn-b'>Delete</Button></>)
         }
     ))
+    const handleSubmit = (values) =>{
+        console.log(values).text
+    }
   return (
     <div className='home'>
         <div className='container home-container'>
