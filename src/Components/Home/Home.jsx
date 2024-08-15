@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import axios from 'axios'
 import { Button, Form, Input, Modal, Table, message } from 'antd'
+import Login from '../Login/Login'
 const Home = () => {
     const [cities,setCities] = useState([])
     const [open,setOpen] = useState([])
@@ -55,7 +56,7 @@ const Home = () => {
             src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${city.image_src}`}/>,
             action:(<>
             <Button className='home-btn-a'>Edit</Button>
-            <Button onClick={closModal} className='home-btn-b'>Delete</Button></>)
+            <Button onClick={()=>deleteCities(city.id)} className='home-btn-b'>Delete</Button></>)
         }
     ))
     const handleSubmit = (values) =>{
@@ -76,6 +77,18 @@ const Home = () => {
             setOpen(false)
             getCities()
         }
+    }).catch(err=>console.log(err))
+}
+const deleteCities = (id) =>{
+    axios({
+        url:`https://autoapi.dezinfeksiyatashkent.uz/api/cities/${id}`,
+        method:'DELETE',    
+        headers:{
+            Authorization:`Bearer ${localStorage.getItem('token')}`
+        }
+    }).then((res)=>{
+        getCities()
+        message.success("Uchirildi")
     }).catch(err=>console.log(err))
 }
   return (
