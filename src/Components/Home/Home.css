@@ -21,19 +21,19 @@
 }
 .home-input-a{
     width: 350px;
-    margin-left: 5px;
+    margin-left: 33px;
 }
 .home-input-b{
     width: 350px;
-    margin-left: 10px;
+    margin-left: 45px;
 }
 .home-input-c{
     margin-left: 24px;
     width: 350px;
 }
 .home-btn-d{
+    margin-left: 20px;
     width: 350px;
-    margin-left: 79px;
     background-color: blue;
     color: #FFFF;
 }

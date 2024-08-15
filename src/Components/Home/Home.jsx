@@ -62,17 +62,17 @@ const Home = () => {
             <Table columns={columns} dataSource={data}/>
             <Modal open={open} footer={null} onCancel={closModal} >
                 <Form>
-                    <Form.Item label="Name">
-                        <Input placeholder='Name' />
+                    <Form.Item className='home-item-a' label="Name">
+                        <Input className='home-input-a' placeholder='Name' />
                     </Form.Item>
-                    <Form.Item label="Text">
-                        <Input placeholder='Text' />
+                    <Form.Item className='home-item-b'  label="Text">
+                        <Input className='home-input-b' placeholder='Text' />
                     </Form.Item>
-                    <Form.Item label="Images">
-                        <Input placeholder='Images' type='file'/>
+                    <Form.Item className='home-item-c'  label="Images">
+                        <Input className='home-input-c' placeholder='Images' type='file'/>
                     </Form.Item>
-                    <Form.Item label="Qushish">
-                        <Button>Sumbit</Button>
+                    <Form.Item className='home-item-d'  label="Qushish">
+                        <Button className='home-btn-d'>Sumbit</Button>
                     </Form.Item>
                 </Form>
             </Modal>
