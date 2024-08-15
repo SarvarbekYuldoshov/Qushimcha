@@ -56,8 +56,19 @@ const Home = () => {
         }
     ))
     const handleSubmit = (values) =>{
-        console.log(values).text
-    }
+        const formData = new FormData ();
+        formData.append('name',values.name);
+        formData.append('text',values.text);
+        formData.append(image.values.image)
+    axios({
+        url:'https://autoapi.dezinfeksiyatashkent.uz/api/cities',
+        method:'POST',
+        headers:{
+            Authorization:`Bearer ${localStorage.getItem('token')}`
+        },
+        data:formData,
+    })
+}
   return (
     <div className='home'>
         <div className='container home-container'>
@@ -75,7 +86,7 @@ const Home = () => {
                         <Input className='home-input-c' placeholder='Images' type='file'/>
                     </Form.Item>
                     <Form.Item className='home-item-d'  label="Qushish">
-                        <Button className='home-btn-d'>Sumbit</Button>
+                        <Button htmlType='submit'  className='home-btn-d'>Sumbit</Button>
                     </Form.Item>
                 </Form>
             </Modal>
