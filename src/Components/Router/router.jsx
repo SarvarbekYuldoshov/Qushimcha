@@ -1,7 +1,7 @@
 import App from "../../App";
 import Home from "../Home/Home";
 import { createBrowserRouter } from "react-router-dom";
-import Models from "../Models/Models";
+import Brands from "../Brands/Brands";
 
  const router = createBrowserRouter([
     {
@@ -13,8 +13,8 @@ import Models from "../Models/Models";
         element: <Home/>,
     },
     {
-        path: "/models",
-        element: <Models/>,
+        path: "/brands",
+        element: <Brands/>,
     }
  ])
  export default router
