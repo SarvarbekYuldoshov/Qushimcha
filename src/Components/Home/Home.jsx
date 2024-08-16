@@ -3,6 +3,7 @@ import './Home.css';
 import axios from 'axios';
 import { Button, Form, Input, Modal, Table, message } from 'antd';
 import Login from '../Login/Login';
+import Item from 'antd/es/list/Item';
 
 const Home = () => {
   const [cities, setCities] = useState([]);
@@ -23,6 +24,7 @@ const Home = () => {
 
   const showModal = () => {
     setOpen(true);
+    setCurrentCitiy(Item)
   };
 
   const closeModal = () => {
@@ -66,7 +68,7 @@ const Home = () => {
     ),
     action: (
       <>
-        <Button onClick={()=>(showModal(city))} className="home-btn-a">Edit</Button>
+        <Button onClick={()=>showModal(city)} className="home-btn-a">Edit</Button>
         <Button onClick={() => deleteCities(city.id)} className="home-btn-b">
           Delete
         </Button>
@@ -81,8 +83,8 @@ const Home = () => {
     formData.append('images', image);
 
     axios({
-      url: 'https://autoapi.dezinfeksiyatashkent.uz/api/cities',
-      method: 'POST',
+      url: currentCitiy?`'https://autoapi.dezinfeksiyatashkent.uz/api/cities'/${currentCitiy.id}`:'https://autoapi.dezinfeksiyatashkent.uz/api/cities',
+      method: currentCitiy?'PUT':'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
