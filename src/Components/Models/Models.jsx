@@ -24,7 +24,10 @@ const Models = () => {
          {
             models && models.map((item,index)=>(
                 <div key={index}>
-                   
+                    <ul className='model-list'>
+                        <h3 className='model-title-a'>{item.name}</h3>
+                        <h4 className='model-title-b'>{item.brand_title}</h4>
+                   </ul>
                 </div>
             ))
          }

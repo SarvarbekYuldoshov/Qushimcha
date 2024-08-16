@@ -1,6 +1,17 @@
 .model-title{
     width: 150px;
+    color: red;
+    font-size: 25px;
 }
 .model-list{
     display: flex;
+    gap: 100px;
+}
+.model-title-a{
+    width: 150px;
+    color: blue;
+}
+.model-title-b{
+    width: 150px;
+    color: blue;
 }
