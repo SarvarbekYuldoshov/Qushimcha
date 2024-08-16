@@ -15,7 +15,7 @@ const Home = () => {
         getCities()
     },[])
 
-    const showModal = () =>{
+    const showModal = (item) =>{
         setOpen(true)
     }
     const closModal = () =>{
@@ -54,7 +54,7 @@ const Home = () => {
             width={150} 
             src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${city.image_src}`}/>,
             action:(<>
-            <Button className='home-btn-a'>Edit</Button>
+            <Button onClick={()=>showModal(city)}  className='home-btn-a'>Edit</Button>
             <Button onClick={()=>deleteCities(city.id)} className='home-btn-b'>Delete</Button></>)
         }
     ))
