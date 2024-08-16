@@ -6,8 +6,9 @@ import Login from '../Login/Login';
 
 const Home = () => {
   const [cities, setCities] = useState([]);
-  const [open, setOpen] = useState(false); // Initialize as a boolean
+  const [open, setOpen] = useState(false); 
   const [image, setImage] = useState(null);
+  const [currentCitiy,setCurrentCitiy] = useState(null)
 
   const getCities = () => {
     axios
@@ -65,7 +66,7 @@ const Home = () => {
     ),
     action: (
       <>
-        <Button className="home-btn-a">Edit</Button>
+        <Button onClick={()=>(showModal(city))} className="home-btn-a">Edit</Button>
         <Button onClick={() => deleteCities(city.id)} className="home-btn-b">
           Delete
         </Button>
