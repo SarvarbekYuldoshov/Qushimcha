@@ -3,13 +3,12 @@ import './Home.css';
 import axios from 'axios';
 import { Button, Form, Input, Modal, Table, message } from 'antd';
 import Login from '../Login/Login';
-import Item from 'antd/es/list/Item';
 
 const Home = () => {
   const [cities, setCities] = useState([]);
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
   const [image, setImage] = useState(null);
-  const [currentCitiy,setCurrentCitiy] = useState(null)
+  const [currentCity, setCurrentCity] = useState(null); // Corrected naming
 
   const getCities = () => {
     axios
@@ -22,13 +21,14 @@ const Home = () => {
     getCities();
   }, []);
 
-  const showModal = () => {
+  const showModal = (city = null) => {
     setOpen(true);
-    setCurrentCitiy(Item)
+    setCurrentCity(city); 
   };
 
   const closeModal = () => {
     setOpen(false);
+    setCurrentCity(null);
   };
 
   const columns = [
@@ -68,7 +68,7 @@ const Home = () => {
     ),
     action: (
       <>
-        <Button onClick={()=>showModal(city)} className="home-btn-a">Edit</Button>
+        <Button onClick={() => showModal(city)} className="home-btn-a">Edit</Button>
         <Button onClick={() => deleteCities(city.id)} className="home-btn-b">
           Delete
         </Button>
@@ -80,11 +80,18 @@ const Home = () => {
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('text', values.text);
-    formData.append('images', image);
+    if (image) {
+      formData.append('images', image);
+    }
+
+    const url = currentCity
+      ? `https://autoapi.dezinfeksiyatashkent.uz/api/cities/${currentCity.id}`
+      : 'https://autoapi.dezinfeksiyatashkent.uz/api/cities';
+    const method = currentCity ? 'PUT' : 'POST';
 
     axios({
-      url: currentCitiy?`'https://autoapi.dezinfeksiyatashkent.uz/api/cities'/${currentCitiy.id}`:'https://autoapi.dezinfeksiyatashkent.uz/api/cities',
-      method: currentCitiy?'PUT':'POST',
+      url: url,
+      method: method,
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -92,7 +99,7 @@ const Home = () => {
     })
       .then((res) => {
         if (res.data.success) {
-          message.success('Qushildi');
+          currentCity ? message.success("Malumotlar Uzgartirildi") : message.success('Qushildi');
           setOpen(false);
           getCities();
         }
@@ -118,12 +125,12 @@ const Home = () => {
   return (
     <div className="home">
       <div className="container home-container">
-        <Button className="home-btn" onClick={showModal}>
+        <Button className="home-btn" onClick={() => showModal()}>
           Shahar Qushish
         </Button>
         <Table columns={columns} dataSource={data} />
         <Modal open={open} footer={null} onCancel={closeModal}>
-          <Form onFinish={handleSubmit}>
+          <Form onFinish={handleSubmit} initialValues={currentCity || {}}>
             <Form.Item
               className="home-item-a"
               label="Name"
@@ -144,7 +151,6 @@ const Home = () => {
               className="home-item-c"
               label="Images"
               name="images"
-              rules={[{ required: true, message: 'Please upload an image!' }]}
             >
               <Input
                 onChange={(e) => setImage(e.target.files[0])}
@@ -152,7 +158,7 @@ const Home = () => {
                 type="file"
               />
             </Form.Item>
-            <Form.Item className="home-item-d" label="Qushish">
+            <Form.Item className="home-item-d">
               <Button htmlType="submit" className="home-btn-d">
                 Submit
               </Button>
