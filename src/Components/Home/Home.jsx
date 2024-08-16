@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import axios from 'axios'
 import { Button, Form, Input, Modal, Table, message } from 'antd'
-import Login from '../Login/Login'
 const Home = () => {
     const [cities,setCities] = useState([])
     const [open,setOpen] = useState([])
