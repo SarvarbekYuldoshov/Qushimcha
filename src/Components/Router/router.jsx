@@ -1,6 +1,7 @@
 import App from "../../App";
 import Home from "../Home/Home";
 import { createBrowserRouter } from "react-router-dom";
+import Models from "../Models/Models";
 
  const router = createBrowserRouter([
     {
@@ -10,6 +11,10 @@ import { createBrowserRouter } from "react-router-dom";
     {
         path: "/home",
         element: <Home/>,
+    },
+    {
+        path: "/models",
+        element: <Models/>,
     }
  ])
  export default router

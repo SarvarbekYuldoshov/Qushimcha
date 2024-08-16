@@ -3,7 +3,7 @@ import "./Models.css"
 const Models = () => {
   return (
     <div>
-      
+      Models
     </div>
   )
 }
