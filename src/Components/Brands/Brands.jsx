@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import "./Brands.css"
 import axios from 'axios';
-import { Button, Table } from 'antd';
+import { Button, Form, Input, Modal, Table } from 'antd';
 const Brands = () => {
-    const[brands,setBrands] = useState([]);
+    const [brands,setBrands] = useState([]);
+    const [openMoodal,setOpenModal] = useState()
     const getBrands = () => {
         axios.get('https://autoapi.dezinfeksiyatashkent.uz/api/brands')
         .then((res)=>setBrands(res.data.data))
@@ -12,6 +13,12 @@ const Brands = () => {
     useEffect(()=>{
         getBrands();
     })
+    const showModal = () =>{
+        setOpenModal(true)
+    }
+    const closeModal = () => {
+        setOpenModal(false)
+    }
     const columns = [
         {
             title:"Number",
@@ -58,7 +65,24 @@ const Brands = () => {
   return (
     <div className='brands'>
       <div className='container brands-container'>
+        <Button onClick={showModal}>Brand Qushish</Button>
         <Table columns={columns} dataSource={Data}/>
+        <Modal open={openMoodal} onCancel={closeModal}>
+            <Form>
+                <Form.Item label="Name">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Text">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Images">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Name">
+                    <Button>Submit</Button>
+                </Form.Item>
+            </Form>
+        </Modal>
       </div>
     </div>
   )

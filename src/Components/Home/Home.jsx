@@ -125,9 +125,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="container home-container">
-        <Button className="home-btn" onClick={() => showModal()}>
-          Shahar Qushish
-        </Button>
+        <Button className="home-btn" onClick={() => showModal()}>Shahar Qushish</Button>
         <Table columns={columns} dataSource={data} />
         <Modal open={open} footer={null} onCancel={closeModal}>
           <Form onFinish={handleSubmit} initialValues={currentCity || {}}>
