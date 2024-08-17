@@ -63,7 +63,11 @@ const Brands = () => {
         }
     ))
 
-   
+   const handleSubmit = (values) =>{
+    const formData = new FormData();
+    formData.append('title', values.title);
+    formData.append('image', values.image);
+   }
 
   return (
     <div className='brands'>
@@ -71,7 +75,7 @@ const Brands = () => {
         <Button onClick={showModal}>Brand Qushish</Button>
         <Table columns={columns} dataSource={Data}/>
         <Modal open={openMoodal} footer={null} onCancel={closeModal}>
-            <Form>
+            <Form onFinish={handleSubmit}>
                 <Form.Item label="Name" name="name">
                     <Input placeholder='Name' />
                 </Form.Item>
