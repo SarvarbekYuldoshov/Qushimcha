@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Button, Form, Input, Modal, Table } from 'antd';
 const Brands = () => {
     const [brands,setBrands] = useState([]);
-    const [openMoodal,setOpenModal] = useState()
+    const [openMoodal,setOpenModal] = useState(false)
     const getBrands = () => {
         axios.get('https://autoapi.dezinfeksiyatashkent.uz/api/brands')
         .then((res)=>setBrands(res.data.data))
@@ -62,21 +62,24 @@ const Brands = () => {
             
         }
     ))
+
+   
+
   return (
     <div className='brands'>
       <div className='container brands-container'>
         <Button onClick={showModal}>Brand Qushish</Button>
         <Table columns={columns} dataSource={Data}/>
-        <Modal open={openMoodal} onCancel={closeModal}>
+        <Modal open={openMoodal} footer={null} onCancel={closeModal}>
             <Form>
-                <Form.Item label="Name">
-                    <Input />
+                <Form.Item label="Name" name="name">
+                    <Input placeholder='Name' />
                 </Form.Item>
-                <Form.Item label="Text">
-                    <Input />
+                <Form.Item label="Text"name="text" >
+                    <Input placeholder='Text' />
                 </Form.Item>
-                <Form.Item label="Images">
-                    <Input />
+                <Form.Item label="Images" name="images">
+                    <Input type='file' placeholder='Images' />
                 </Form.Item>
                 <Form.Item label="Name">
                     <Button>Submit</Button>
