@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import "./Brands.css"
 import axios from 'axios';
-import { Button, Form, Input, Modal, Table } from 'antd';
+import { Button, Form, Input, Modal, Table, message } from 'antd';
 const Brands = () => {
     const [brands,setBrands] = useState([]);
     const [openMoodal,setOpenModal] = useState(false)
+    const [image,setImage] = useState(null)
     const getBrands = () => {
         axios.get('https://autoapi.dezinfeksiyatashkent.uz/api/brands')
         .then((res)=>setBrands(res.data.data))
@@ -66,24 +67,39 @@ const Brands = () => {
    const handleSubmit = (values) =>{
     const formData = new FormData();
     formData.append('title', values.title);
-    formData.append('image', values.image);
+    formData.append('id',values.id)
+    formData.append('images',image);
+    axios({
+        url:'https://autoapi.dezinfeksiyatashkent.uz/api/brands',
+        method:'POST',
+        headers:{
+            Authorization:`Bearer ${localStorage.getItem('token')}`
+        },
+        data:formData
+    })
+    .then(res=>{
+        if(res.data.data.success){
+            message.success
+            setOpenModal(false)
+            getBrands()
+        }
+    })
    }
 
   return (
     <div className='brands'>
       <div className='container brands-container'>
         <Button onClick={showModal}>Brand Qushish</Button>
-        <Table columns={columns} dataSource={Data}/>
         <Modal open={openMoodal} footer={null} onCancel={closeModal}>
             <Form onFinish={handleSubmit}>
-                <Form.Item label="Name" name="name">
-                    <Input placeholder='Name' />
+                <Form.Item label="Title" name="title">
+                    <Input placeholder='Title' />
                 </Form.Item>
-                <Form.Item label="Text"name="text" >
-                    <Input placeholder='Text' />
+                <Form.Item label="ID" name="id">
+                    <Input placeholder='Id' />
                 </Form.Item>
                 <Form.Item label="Images" name="images">
-                    <Input type='file' placeholder='Images' />
+                    <Input type='file' placeholder='Images' onChange={(e)=>setImage(e.target.files[0])} />
                 </Form.Item>
                 <Form.Item label="Name">
                     <Button>Submit</Button>
